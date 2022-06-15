@@ -10,7 +10,7 @@ const App = () => {
   const [newReview, setNewReview] = useState("");
 
   useEffect(() => {
-    Axios.get("https://mysql-deploy-react.herokuapp.com//api/get").then((res) => {
+    Axios.get("https://mysql-deploy-react.herokuapp.com/api/get").then((res) => {
       setMovieReviewList(res.data);
     })
   }, [])
@@ -18,7 +18,7 @@ const App = () => {
   const formSubmitHandler = e => {
     e.preventDefault();
     try {
-      Axios.post("https://mysql-deploy-react.herokuapp.com//api/insert", {
+      Axios.post("https://mysql-deploy-react.herokuapp.com/api/insert", {
         movieName: movieName, 
         movieReview: movieReview,
       }).then((res) => {
@@ -37,7 +37,7 @@ const App = () => {
 
   const deleteReview = (movie) => {
     try {
-      Axios.delete(`https://mysql-deploy-react.herokuapp.com//api/delete/${movie}`);
+      Axios.delete(`https://mysql-deploy-react.herokuapp.com/api/delete/${movie}`);
       setMovieReviewList(prev => {
         const updatedReviewList = prev.filter(p => p.movieReview != movie);
         return updatedReviewList;
@@ -49,7 +49,7 @@ const App = () => {
 
   const updateReview = (currReview) => {
     try {
-      Axios.put("https://mysql-deploy-react.herokuapp.com//api/update", {
+      Axios.put("https://mysql-deploy-react.herokuapp.com/api/update", {
         currReview: currReview,
         newReview: newReview,
       });
